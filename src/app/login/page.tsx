@@ -13,9 +13,10 @@ function Home() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const res = await axios.post("/api/auth/login", credentials);
+    const { data, status } = await axios.post("/api/auth/login", credentials);
 
-    if (res.status === 200) {
+    console.log("login response", data);
+    if (status === 200) {
       router.push("/dashboard");
     }
   };
