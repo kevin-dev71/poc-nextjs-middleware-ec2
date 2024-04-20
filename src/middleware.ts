@@ -6,6 +6,8 @@ export async function middleware(request: Request) {
   const cookieStore = cookies()
   const jwt = cookieStore.get('myTokenName')
 
+  console.log({jwt, cookieStore})
+
   if (!jwt) return NextResponse.redirect(new URL("/login", request.url));
 
   // this condition avoid to show the login page if the user is logged in
