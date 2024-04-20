@@ -1,5 +1,4 @@
 import { sign } from "jsonwebtoken";
-import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 export async function POST(request: Request) {
@@ -17,10 +16,6 @@ export async function POST(request: Request) {
       "secret"
     );
 
-    const response = NextResponse.json({
-      token,
-    });
-
     cookieStore.set({
       name: "myTokenName",
       value: token,
@@ -31,11 +26,13 @@ export async function POST(request: Request) {
       path: "/",
     });
 
-    return Response.json(response, {
+    return Response.json({
+      token,
+    }, {
       status: 200,
     }) ;
   } else {
-    return NextResponse.json(
+    return Response.json(
       {
         message: "Invalid credentials",
       },
