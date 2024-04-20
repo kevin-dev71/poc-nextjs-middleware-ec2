@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 
 export function GET() {
   const cookieStore = cookies();
+  console.log(cookieStore.getAll(), "profile")
   const token = cookieStore.get("myTokenName");
 
   if (!token) {
